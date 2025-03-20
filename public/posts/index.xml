@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The LITzman outlet</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on The LITzman outlet</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cookies</title>
+      <link>http://localhost:1313/posts/cookies/</link>
+      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cookies/</guid>
+      <description>&lt;h2 id=&#34;how-to-exactly-make-my-chocolate-chips-cookies&#34;&gt;How to &lt;em&gt;exactly&lt;/em&gt; make my Chocolate chips cookies&lt;/h2&gt;&#xA;&lt;p&gt;I assume most people don&amp;rsquo;t know how to bake good cookies, me neither.&lt;/p&gt;&#xA;&lt;p&gt;If you do know how to make cookies, skedaddle out of here before I embarrass myself.&lt;/p&gt;&#xA;&lt;p&gt;In my experience, baking is the kind of art that doesn&amp;rsquo;t reward expermintation much - Smarter people make recipes, we follow them.&lt;/p&gt;&#xA;&lt;p&gt;If we fuck up the recipe, they will fuck up our cookies.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
