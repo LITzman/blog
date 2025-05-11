@@ -22,8 +22,7 @@
   }
 
   pre {
-    // background: $--bg-color;
-    background-color:rgb(30, 30, 30);
+    background: $--bg-color;
   }
 
   code:not(pre > ) {
@@ -117,7 +116,7 @@ table, th, td {
 }
 
 code {
-  background-color:rgb(30, 30, 30);
+  background-color:rgb(93, 93, 93);
   text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="description" content="Exploring automated CAD design - Parametric guitar fretboard
+This projects combines two of my biggest passions - 3D CAD designs and guitars, but unfortunately software as well.
+I&rsquo;ll admit that If you share neither of those passions with me you don&rsquo;t have much to do in this article;
+Keep reading on your own discretion.
+Automated CAD -
+I’ve worked with SolidWorks, Fusion 360, and Onshape. They’re all powerful tools once you know how to use them, but they aren’t optimized for repetition. If you’re doing wire routing, mold design, or really anything that follows a pattern, manually updating sketches or features quickly becomes tedious.">  
+
+  <title>
+    
+      Automated CAD design
+    
+  </title>
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/" />
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.7215fb0690540560390c49f8b899a426e30edf39df728a1e189e5c0ebe417162da9cd631b426f20131ed359aee0264e8ac1aae862a32f49e74b88d844e5b370f.css" integrity="sha512-chX7BpBUBWA5DEn4uJmkJuMO3znfcooeGJ5cDr5BcWLanNYxtCbyATHtNZruAmTorBquhioy9J50uI2ETls3Dw==" />
+  
+</head>
+<body a="auto">
+        <main class="page-content" aria-label="Content">
+            <div class="w">
+                <div class="post-meta">
+                    <a href="/">..</a>
+
+                    <p>
+                        <time datetime="2025-05-11 00:00:00 &#43;0000 UTC">
+                            2025-05-11
+                        </time>
+                    </p>
+                </div>
+
+<article>
+    <h1>Automated CAD design</h1>
+
+    
+
+    <h1 id="exploring-automated-cad-design---parametric-guitar-fretboard">Exploring automated CAD design - Parametric guitar fretboard</h1>
+<p>This projects combines two of my biggest passions - 3D CAD designs and guitars, but unfortunately software as well.</p>
+<p>I&rsquo;ll admit that If you share neither of those passions with me you don&rsquo;t have much to do in this article;
+Keep reading on your own discretion.</p>
+<h2 id="automated-cad--">Automated CAD -</h2>
+<p>I’ve worked with SolidWorks, Fusion 360, and Onshape. They’re all powerful tools once you know how to use them, but they aren’t optimized for repetition. If you’re doing wire routing, mold design, or really anything that follows a pattern, manually updating sketches or features quickly becomes tedious.</p>
+<p>All three products I mentioned has some programming interface to automate these types of tasks in a custom, user-defined manner.</p>
+<ul>
+<li>Soildworks API uses VisualBasic, C# or C++ and is therefore deemed unusable for these purpose, as my patience is being tested enough already.</li>
+</ul>
+<p>I chose Onshape over Fusion for this experiment for a very good reason - I tried it first and it worked well enough for me to give up trying the Fusion API.</p>
+<p>Let&rsquo;s try to solve an actual problem!</p>
+<h1 id="the-use-case">The Use case</h1>
+<p>While it&rsquo;s very much possible to design a guitar with pen and paper, many luthiers  choose CAD solutions in order to be able to use CNC machines in their manufacturing process.</p>
+<p>The fretboard of the guitar (The top of the neck, the surface that holds the frets, where the player presses their fingers) requires special attention and involves some accurate dimensions to ensure player comfort and tonal accuracy.</p>
+<p><img src="https://cdn.mos.cms.futurecdn.net/rvdi3hkQaxuaK6bN5HyTQm.jpg" alt=""></p>
+<p>Building a typical fretboard usually involves -</p>
+<ul>
+<li>Picking a hard piece of wood</li>
+<li>Cutting it to shape - flat plank with wide base</li>
+<li>Milling slots for the fret to fit into with a saw or a small milling bit</li>
+<li>Curving the top of surface</li>
+</ul>
+<p>Designing this in CAD is also mostly straightforward, except for the fret dimensions:
+The distance between frets is very specific and is calculated using a formula that depends on the scale length (total length of the vibrating portion of the string) of the guitar.</p>
+<p><img src="https://us2.dh-cdn.net/uploads/db5587/original/3X/8/d/8d8d7b974e2927579844e3c8aca28fa598e53a77.jpeg" alt=""></p>
+<p>Fretboards are a prime candidate for automation. Fret positions are mathematical and follow a consistent formula based on the scale length. Once you know how to compute them, it’s trivial to generate them for any scale. ’Whats not trivial is inputting them into CAD software by hand every time, even though most luthiers will end up with a <strong>very</strong> similar design.</p>
+<p>So I wrote a custom Onshape feature that generates a parametric fretboard using a few key inputs: scale length, fret count, radius, string count, and so on. This allows me to quickly create fretboards with varying specifications without having to redo any of the work.</p>
+<p><a href="https://github.com/LITzman/GenerativeGuitarFretboard">Source Code</a> - Follow along as you read!</p>
+<p><img src="https://private-user-images.githubusercontent.com/31805301/358858194-2692ac04-5b85-4e1f-a043-29fb3fdf8932.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDY5OTI2ODYsIm5iZiI6MTc0Njk5MjM4NiwicGF0aCI6Ii8zMTgwNTMwMS8zNTg4NTgxOTQtMjY5MmFjMDQtNWI4NS00ZTFmLWEwNDMtMjlmYjNmZGY4OTMyLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTExVDE5Mzk0NlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWIzNDFiMDllNDU1YTQxODAwMDgyMzhjZjNjY2JhMTY4ZmQ5YmU5NjBlZjU5OWVkMWMwZGViZWM0OWIyNzc3NzQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.pIRAq96u9WIRDau8z1R5YRA1EirtuySsMeQ6D0hW0Hc" alt=""></p>
+<p>I even had the pleasure of <a href="https://imgur.com/a/0HkGCiF">making a fretboard</a> that was designed by an experimental version of this code!</p>
+<h1 id="featurescript-basics--">FeatureScript Basics -</h1>
+<p>Inside your Onshape project you can click &ldquo;Insert new tab&rdquo; on the bottom left corner of the page and than &ldquo;Create Feature Studio&rdquo;.
+You will now be greeted with a fresh IDE page where you will implement your feature.</p>
+<p>Here are the basics -</p>
+<ul>
+<li>
+<p>We are using a JavaScript-like syntax which is easy enough to figure out without actually knowing JavaScript.</p>
+</li>
+<li>
+<p>The &ldquo;Commit&rdquo; button saves your progress and checks your code for errors.</p>
+</li>
+<li>
+<p>You can test your code in a part studio by using &ldquo;Add custom features&rdquo; and browsing for your FeatureScript.</p>
+</li>
+<li>
+<p>Documentation is here - <a href="https://cad.onshape.com/FsDoc/index.html">https://cad.onshape.com/FsDoc/index.html</a></p>
+</li>
+<li>
+<p>The debug-print function is <code>debug()</code> and it receive a context argument (which is given to your feature as an argument) and your custom input.</p>
+</li>
+</ul>
+<p>Click the &ldquo;New feature&rdquo; button and you&rsquo;ll receive something like this -</p>
+<pre tabindex="0"><code>annotation { &#34;Feature Type Name&#34; : &#34;My Feature&#34;, &#34;Feature Type Description&#34; : &#34;&#34; }
+export const myFeature = defineFeature(function(context is Context, id is Id, definition is map)
+    precondition
+    {
+        // Define the parameters of the feature type
+    }
+    {
+        // Define the function&#39;s action
+    });
+</code></pre><p>Your feature is created by the defineFeature function and the <code>annotation</code> map suggest some strings that will be used for the UI of your feature.</p>
+<ul>
+<li>
+<p>The <code>context</code> argument represents a single part with all of it&rsquo;s bodies, geometries, errors, metadata etc&hellip;
+During the creation of the feature we will enrich this context with new geomteries.</p>
+</li>
+<li>
+<p>The <code>id</code> arguemnt is an identification string that is used internaly by Onshape for identification of sub-features.</p>
+</li>
+<li>
+<p>The <code>definition</code> argument is a map of feature parameters that can be referenced throughout the creation of the feature.</p>
+</li>
+</ul>
+<p>My feature&rsquo;s defintion looks like this -</p>
+<pre tabindex="0"><code>annotation { &#34;Feature Type Name&#34; : &#34;Generative Fretboard&#34; }
+export const generativeFretboard = defineFeature(function(context is Context, id is Id, definition is map)
+</code></pre><h1 id="user-parameters-and-ui">User parameters and UI</h1>
+<p>In the precondition scope of the feature we created will fill the definition map with user supplied parameters and Onshape will automatically create a usable UI for our feature, where the designer can input his parameters.</p>
+<p>To create a parameter place the cursor in the precondition scope, click the &ldquo;Feature parameters&rdquo; button in the top bar (*** photo) and choose the appropriate type for your parameter.
+You&rsquo;ll be given this parameter definition -</p>
+<pre tabindex="0"><code>annotation { &#34;Name&#34; : &#34;My Count&#34; }
+        isInteger(definition.myCount, POSITIVE_COUNT_BOUNDS);
+</code></pre><p><img src="https://i.imgur.com/Rffx6mR.png" alt=""></p>
+<p>You can replace <code>&quot;myCount&quot;</code> with a proper name for your parameter and the <code>annotation</code> &ldquo;Name&rdquo; with a user-visible version of this name.</p>
+<p>The bounds argument specifies the possible range of values for this parameter - the default <code>POSITIVE_COUNT_BOUNDS</code> means any positive number can be used but custom bounds can be defined.</p>
+<p>I&rsquo;ll demonstrate the <code>&quot;Fret Count&quot;</code> parameter (which specifies how many frets slots will be cut from the board) and it&rsquo;s bounds -</p>
+<pre tabindex="0"><code>// Defined in the global scope
+export const FRET_BOUNDS =  {
+    (unitless): [1, 24, 100]
+    } as IntegerBoundSpec;
+
+// Inside the feature precondition - 
+annotation { &#34;Name&#34; : &#34;Fret Count&#34;}
+isInteger(definition.fretCount, FRET_BOUNDS);
+</code></pre><p>In the bound definition I define the possible bounds in every relevant unit of measurement. In this case I use <code>unitless</code> because this is an absolute number.
+The bounds are the first and last members of the array (1 and 100) and the default value is the middle member (24 in my case)</p>
+<p><img src="https://i.imgur.com/lRslFHX.png" alt=""></p>
+<p>Here&rsquo;s an example for a length parameter, which will be used to as a dimension in my geomtry -</p>
+<pre tabindex="0"><code>export const FRETBOARD_RADIUS_BOUNDS = {
+    (inch): [10, 16, 25],
+    (millimeter): 400,
+    (centimeter): 40,
+    (meter): 0.4,
+    } as LengthBoundSpec;
+
+annotation { &#34;Name&#34; : &#34;Fretboard Radius&#34;}
+isLength(definition.fretboardRadius, FRETBOARD_RADIUS_BOUNDS);
+</code></pre><p>Here I defined default values for multiple units of measurements which may be used by the designer, and I can set the bounds in any one of them and Onshape will automatically evaluate them, no matter which dimension was used.</p>
+<p>Another fun pattern to use is conditional parameters, which will be visible for the designer only if he ticks a box, so the UI is less messy.
+I define a <code>boolean</code> parameter, and if it&rsquo;s set to true I define some more features and a special <code>annotation</code> that makes them driven by the <code>boolean</code> feature.</p>
+<pre tabindex="0"><code>annotation { &#34;Name&#34; : &#34;Spacing Options&#34; }
+definition.spacingOptions is boolean;
+
+if (definition.spacingOptions) {
+    annotation { &#34;Group Name&#34; : &#34;Spacing Options&#34;, &#34;Collapsed By Default&#34; : true, &#34;Driving Parameter&#34; : &#34;spacingOptions&#34; } {
+        annotation { &#34;Name&#34; : &#34;Nut String Spacing&#34;}
+        isLength(definition.stringSpacing, STRING_SPACING_BOUNDS);
+        
+        annotation { &#34;Name&#34; : &#34;Bridge String Spacing&#34;}
+        isLength(definition.bridgeStringSpacing, BRIDGE_STRING_SPACING_BOUNDS);
+        
+        annotation { &#34;Name&#34; : &#34;String Edge Spacing&#34;}
+        isLength(definition.edgeSpacing, EDGE_SPACING_BOUNDS);
+    }
+}
+</code></pre><p><img src="https://i.imgur.com/XT5RNHi.png" alt=""></p>
+<p>Onshape let&rsquo;s you define more types other the number and dimensions, such as strings, images, angles etc&hellip; but I didn&rsquo;t need any of them for this project.</p>
+<p>You can see more examples of parameters in my code under the precondition scope.</p>
+<h1 id="sketching">Sketching</h1>
+<p>Just like in standard CAD applications, to create 3D bodies we need to create 2D sketches first.
+Automating sketches is very non-intuitive, as it requires you to describe every point, line or arc you use without using sketch relations such as &ldquo;parallel&rdquo; or &ldquo;equal&rdquo;.
+Let&rsquo;s move to the &ldquo;function action&rdquo; scope of our feature and see some examples -</p>
+<pre tabindex="0"><code>var fretboardWidth = ((definition.stringCount - 1) * definition.stringSpacing + definition.edgeSpacing * 2);
+var halfFretboardWidth = fretboardWidth / 2;
+
+var fretboardBlankTop = newSketch(context, id + &#34;fretboardBlankTop&#34;, {
+        &#34;sketchPlane&#34; : qCreatedBy(makeId(&#34;Front&#34;), EntityType.FACE)
+});
+
+skRectangle(fretboardBlankTop, &#34;fretboardTopProfile&#34;, {
+        &#34;firstCorner&#34; : vector(-halfFretboardWidth, 0 * millimeter),
+        &#34;secondCorner&#34; : vector(halfFretboardWidth, -definition.fretboardThicknes)
+});
+
+skSolve(fretboardBlankTop);
+</code></pre><p>There&rsquo;s quite a lot going on here, but all we did here was using some parameters we received to sketch a rectangle.</p>
+<ul>
+<li>I first defined some dimensions variables by using the <code>var</code> keyword.</li>
+<li>I access given paramters by using the definition map.</li>
+<li>I can use basic math operations (<a href="https://cad.onshape.com/FsDoc/library.html#module-math.fs">Or advanced ones</a>) to calculate the needed dimensions for my rectangle.</li>
+</ul>
+<p>Creating a sketch is done using newSketch.
+We need to feed it a unique <code>ID</code> for our sketch, which is under the given feature <code>ID</code> in our hierarchy so something like <code>id + &quot;SketchName&quot;</code> works.</p>
+<p><code>&quot;sketchPlane&quot; : qCreatedBy(makeId(&quot;Front&quot;), EntityType.FACE)</code> Means the sketch will be drawn on the default &ldquo;Front&rdquo; plane of the part. This exposes us to an important principle of FeatureScript -</p>
+<h3 id="queries--">Queries -</h3>
+<p>Queries allows us to access geometry (vertices, edges, faces, and bodies) by using a disgusting query syntax.</p>
+<p>Sometimes we won&rsquo;t need this - if we want a reference for a geomtry we created, like entities in this very sketch we are creating, we can just keep them in a variable and point to them when they are used.</p>
+<p>However, here we need to access a plane we did not create, so we make a query - <code>qCreatedBy(makeId(&quot;Front&quot;), EntityType.FACE</code>), or in human language - &ldquo;<em>Give me any entity of type FACE that was created by an operation with id == &ldquo;Front&rdquo;</em>&rdquo;.</p>
+<p>This was the easiest way there is to grab the &ldquo;front&rdquo; plane, I swear.</p>
+<p>There&rsquo;s a pleathora of other query functions used to fetch entities in all sorts of ways, like <a href="https://cad.onshape.com/FsDoc/library.html#qSketchRegion-Id-boolean"><code>qSketchRegion</code></a>.</p>
+<p><a href="https://cad.onshape.com/FsDoc/library.html#module-query.fs">This</a> section of documentation further describes this in further vague details.
+<br>
+Let&rsquo;s continue with our sketch.</p>
+<pre tabindex="0"><code>skRectangle(fretboardBlankTop, &#34;fretboardTopProfile&#34;, {
+        &#34;firstCorner&#34; : vector(-halfFretboardWidth, 0 * millimeter),
+        &#34;secondCorner&#34; : vector(halfFretboardWidth, -definition.fretboardThicknes)
+});
+
+skSolve(fretboardBlankTop);
+</code></pre><p>We have functions with the prefix &ldquo;sk&rdquo; that let&rsquo;s us add entities to our sketch, like the <code>skRectangle</code> demonstrated above, which needs a sketch context argument, a sketch ID, and two points on the sketch to create a rectangle between.</p>
+<p>The points are described as a <code>vector</code>which expects two dimensions to be defined.
+Notice how I multiplied <code>0</code> by <code>millimeter</code> to create a dimension of 0mm as Onshape can&rsquo;t treat an integer (an abstract number) as a dimension of a distance.</p>
+<p>The <code>skSolve</code> function solves the given sketch object, which adds it to the feature context, so we finally have something visible for the designer!</p>
+<p><img src="https://i.imgur.com/4PbIqzL.png" alt=""></p>
+<p>Here&rsquo;s a nicer example of a sketch, which demonstrates the real power of automation for this use case -</p>
+<pre tabindex="0"><code>var fret_locations = makeArray(definition.fretCount + 1, 0);
+var current_fret = definition.scaleLength;
+for (var fret_num = 1; fret_num &lt;= definition.fretCount; fret_num += 1) {
+    current_fret = current_fret / (2 ^ (1/12));
+    fret_locations[fret_num] = definition.scaleLength - current_fret;            
+}
+
+var fretSlots = newSketch(context, id + &#34;fretSlotsProfile&#34;, {
+    &#34;sketchPlane&#34; : qCreatedBy(makeId(&#34;Right&#34;), EntityType.FACE)
+});
+
+for (var fret_num = 1; fret_num &lt;= definition.fretCount; fret_num += 1) {
+    skRectangle(fretSlots, &#34;fretSlotsProfile&#34;  ~ fret_num, {
+            &#34;firstCorner&#34; : vector(fret_locations[fret_num] + definition.fretSlotWidth / 2, 0 * millimeter),
+            &#34;secondCorner&#34; : vector(fret_locations[fret_num] - definition.fretSlotWidth / 2, -definition.fretSlotDepth)
+    });
+}
+
+skSolve(fretSlots);
+</code></pre><p>Here I use a some &ldquo;math&rdquo; to define dimensions for a sketch that contains multiple rectangle, and a <code>for</code> loop to create them.</p>
+<p>Manually creating this in Onshape would&rsquo;ve took me like 10 minutes of pointing and clicking, but I managed to create this automated sketch in only 40 minutes!</p>
+<p><img src="https://i.imgur.com/Rloypd1.png" alt=""></p>
+<h1 id="going-3d">Going 3D</h1>
+<p>We can also automate extrude, revolve, loft etc&hellip; operations that use the sketches we defined to create 3D bodies.</p>
+<p>These kind of operations are done by functions with &ldquo;op&rdquo; prefix -</p>
+<pre tabindex="0"><code>opLoft(context, id + &#34;fretboardBlank&#34;, {
+        &#34;profileSubqueries&#34; : [ qSketchRegion(id + &#34;fretboardBlankTop&#34;), qSketchRegion(id + &#34;fretboardBlankBottom&#34;) ],
+        &#34;bodyType&#34; : ToolBodyType.SOLID
+});
+</code></pre><p>Take this loft operation for example - it requires two sketches that define the profiles of the loft (and can be further customized with loft guides etc&hellip;).
+To satisfy the <code>&quot;profileSubqueries&quot;</code> argument we will give it an array of queries.</p>
+<p>The most suitable query for this case is <code>qSketchRegion</code> which takes a sketch <code>id</code> and finds the enclosed 2D regions this sketch creates.</p>
+<p><img src="https://i.imgur.com/yssHaCb.png" alt=""></p>
+<ul>
+<li>TIP: We can call <code>opDeleteBodies</code> to get rid of any &ldquo;construction geometry&rdquo; that the designer don&rsquo;t need to see in his feature tree -</li>
+</ul>
+<pre tabindex="0"><code>//  We don&#39;t need &#34;fretboardBlankTop&#34; anymore so let&#39;s delete it
+opDeleteBodies(context, id + &#34;deleteSketchFretboardBlankTop&#34;, { &#34;entities&#34; : qCreatedBy(id + &#34;fretboardBlankTop&#34;) });
+</code></pre><br>
+<p>You can also consider this example, a relatively complex extrude operation, which demonstrate usage of many non-default extrusion parameters.</p>
+<pre tabindex="0"><code>opExtrude(context, id + &#34;fretSlots&#34;, {
+    &#34;operationType&#34;: NewBodyOperationType.REMOVE,
+    &#34;entities&#34; : qSketchRegion(id + &#34;fretSlotsProfile&#34;),
+    &#34;direction&#34; : evOwnerSketchPlane(context, { &#34;entity&#34; : qSketchRegion(id + &#34;fretSlotsProfile&#34;, false) }).normal,
+    &#34;endBound&#34; : BoundingType.UP_TO_NEXT,
+    &#34;isStartBoundOpposite&#34; : true,
+    &#34;endTranslationalOffset&#34; : -definition.blindSlotThickness,
+    &#34;startBound&#34; : BoundingType.UP_TO_NEXT,
+    &#34;startTranslationalOffset&#34; : -definition.blindSlotThickness
+});
+</code></pre><p>Manually selecting each entity for this extrusion is very annoying and FeatureScript gets this done nicely with a query.</p>
+<p>Another nice example is this boolean operation between 3D bodies, that also demonstrates nestled queries to filter query results -</p>
+<pre tabindex="0"><code>opBoolean(context, id + &#34;fretSlotsCut&#34;, {
+        &#34;tools&#34; : qBodyType(qCreatedBy(id + &#34;fretSlots&#34;, EntityType.BODY), BodyType.SOLID),
+        &#34;targets&#34;: qBodyType(qCreatedBy(id + &#34;fretboardBlank&#34;, EntityType.BODY), BodyType.SOLID),
+        &#34;operationType&#34; : BooleanOperationType.SUBTRACTION
+});
+</code></pre><p><em>&ldquo;Get every body of type SOLID created by the &ldquo;fretSlots&rdquo; Operation.&rdquo;</em></p>
+<h1 id="off-to-work">Off to work</h1>
+<p>The full extent of the <a href="https://cad.onshape.com/FsDoc/library.html">FeatureScript Standard Library</a> is vast.
+Almost anything that can be done manually also has an API.</p>
+<pre tabindex="0"><code>setProperty(context, {
+    &#34;entities&#34; : qBodyType(qCreatedBy(id + &#34;fretboardBlank&#34;, EntityType.BODY), BodyType.SOLID),
+    &#34;propertyType&#34; : PropertyType.APPEARANCE,
+    &#34;value&#34; : color(0.21, 0.21, 0.21)
+});
+</code></pre><p>This snippet will change the display color of my part :)</p>
+<p>You can also do error handling -</p>
+<pre tabindex="0"><code>if (definition.stringCount &lt; 2) {
+    throw { message : ErrorStringEnum.INVALID_INPUT };
+}
+</code></pre><p>Some recommended resources that helped me navigating:</p>
+<ul>
+<li><a href="https://github.com/dcowden/featurescript">This repo</a> has some references for nice features you can take examples from.</li>
+<li><a href="https://github.com/javawizard/onshape-std-library-mirror">This one</a> is a copy of the FeatureScript standard library, which can be helpful when navigating unclear documentation and obscure errors.</li>
+<li>The surprisingly active <a href="https://forum.onshape.com/">Onshape forum</a>.</li>
+</ul>
+<h1 id="auto-designing-a-fretboard">Auto-designing a fretboard</h1>
+<p>I thought it will be nice to actually describe the method I used to produce the fretboard.
+Let&rsquo;s start with my input parameters -</p>
+<p><strong>General Options:</strong></p>
+<ul>
+<li>Fret count</li>
+<li>Scale length - affects the length of the fretboard</li>
+<li>String count - affects the width of the fretboard</li>
+<li>Radius - of the top curve</li>
+</ul>
+<p><strong>Spacing Options</strong></p>
+<ul>
+<li>Nut string spacing - distance between the strings at the nut</li>
+<li>Bridge string spacing - distance between the strings at the bridge.</li>
+<li>Edge spacing - distance between the outer strings and the edges of the fretboard</li>
+</ul>
+<p><strong>Advanced Options</strong></p>
+<ul>
+<li>Blind slots - how far from the edge of the board the slot will end</li>
+<li>Thickness - of the board</li>
+<li>Body overlap - amount of extra material after the last fret</li>
+</ul>
+<p>All of these are length parameters, besides the fret count, which is an integer.</p>
+<p>I make the &ldquo;fretboard blank&rdquo; by creating a loft between two sketches - one on each side of the fretboard.</p>
+<p><img src="https://i.imgur.com/h0fbf08.png" alt=""></p>
+<p><img src="https://i.imgur.com/wr6xB5m.png" alt=""></p>
+<p>I calculate the position of each fret, and create a sketch with the profile of each fret slot in the right location.
+<img src="https://i.imgur.com/KaV2bPd.png" alt=""></p>
+<ul>
+<li>For now the fretboard stretches all the way to the bridge, we will fix that later</li>
+</ul>
+<p>I can now cut the fret slots.
+The easiest way to do this in a single operation (and not fret_count * operation) was to create a solid body from each fret and than applying a boolean operation between the two bodies -</p>
+<ul>
+<li>Fret slots are not cut yet - they are a separate solid body that collides with the fretboard.</li>
+</ul>
+<p><img src="https://i.imgur.com/0O9BKCy.png" alt=""></p>
+<ul>
+<li>Now the fret slots are cut by using <code>opBoolean</code> between the two bodies.
+<img src="https://i.imgur.com/rheVQ5o.png" alt=""></li>
+</ul>
+<p>After cutting the excess material on the side, I draw a circle of the chosen radius on the side of the fretboard:</p>
+<p><img src="https://i.imgur.com/YMZd9ru.png" alt=""></p>
+<p>And now I can cut the radius from the board with <code>opExtrude</code> -</p>
+<p><img src="https://i.imgur.com/nCZGIYM.png" alt="">
+<br><br><br>
+<br>
+and&hellip;
+<br><br><br>
+That&rsquo;s it!
+A guitar fretboard design, fully automated.
+<img src="https://i.imgur.com/UziedT5.gif" alt=""></p>
+
+</article>
+
+            </div>
+        </main>
+    </body></html>

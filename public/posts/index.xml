@@ -2,17 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on The LITzman outlet</title>
-    <link>https://example.org/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on The LITzman outlet</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automated CAD design</title>
+      <link>http://localhost:1313/posts/fretboard/</link>
+      <pubDate>Sun, 11 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/fretboard/</guid>
+      <description>&lt;h1 id=&#34;exploring-automated-cad-design---parametric-guitar-fretboard&#34;&gt;Exploring automated CAD design - Parametric guitar fretboard&lt;/h1&gt;&#xA;&lt;p&gt;This projects combines two of my biggest passions - 3D CAD designs and guitars, but unfortunately software as well.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ll admit that If you share neither of those passions with me you don&amp;rsquo;t have much to do in this article;&#xA;Keep reading on your own discretion.&lt;/p&gt;&#xA;&lt;h2 id=&#34;automated-cad--&#34;&gt;Automated CAD -&lt;/h2&gt;&#xA;&lt;p&gt;I’ve worked with SolidWorks, Fusion 360, and Onshape. They’re all powerful tools once you know how to use them, but they aren’t optimized for repetition. If you’re doing wire routing, mold design, or really anything that follows a pattern, manually updating sketches or features quickly becomes tedious.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>French Chocolate Cake</title>
+      <link>http://localhost:1313/posts/french_chocolate_cake/</link>
+      <pubDate>Fri, 04 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/french_chocolate_cake/</guid>
+      <description>&lt;p&gt;Eventually I&amp;rsquo;ll write something about software or music or something I actually do and than my 3 readers will forsake me.&lt;br&gt;&#xA;Until then, another sugar infused recipe!&lt;/p&gt;&#xA;&lt;p&gt;This recipe isn&amp;rsquo;t mine. It&amp;rsquo;s from a book that I can&amp;rsquo;t find online so this page exists mostly for future preservation.&lt;/p&gt;&#xA;&lt;h3 id=&#34;this-cake-is-fun&#34;&gt;This cake is fun&lt;/h3&gt;&#xA;&lt;p&gt;This recipe calls for &lt;strong&gt;a lot&lt;/strong&gt; of butter and chocolate, but no flour - Bitch is gluten free!&lt;br&gt;&#xA;If this cake was promised to you 3000 years ago, you will be happy to know it&amp;rsquo;s kosher, even for Passover.&lt;br&gt;&#xA;Even though it has some annoying maneuvers involved, this journey will take about 90~ minutes until completion and about 1 more hour until the cake is edible.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Cookies</title>
-      <link>https://example.org/posts/cookies/</link>
+      <link>http://localhost:1313/posts/cookies/</link>
       <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/cookies/</guid>
+      <guid>http://localhost:1313/posts/cookies/</guid>
       <description>&lt;h2 id=&#34;how-to-exactly-make-my-chocolate-chips-cookies&#34;&gt;How to &lt;em&gt;exactly&lt;/em&gt; make my Chocolate chips cookies&lt;/h2&gt;&#xA;&lt;p&gt;I assume most people don&amp;rsquo;t know how to bake good cookies, me neither.&lt;/p&gt;&#xA;&lt;p&gt;If you do know how to make cookies, skedaddle out of here before I embarrass myself.&lt;/p&gt;&#xA;&lt;p&gt;In my experience, baking is the kind of art that doesn&amp;rsquo;t reward expermintation much - Smarter people make recipes, we follow them.&lt;/p&gt;&#xA;&lt;p&gt;If we fuck up the recipe, they will fuck up our cookies.&lt;/p&gt;</description>
     </item>
   </channel>
