@@ -27,6 +27,7 @@ Mind you: This recipe produces large, chewy cookies that are insanely sweet. If 
 - 1 teaspoon of vanilla extract
 - 1 + 1/4 cups of flour
 - 1/2 teaspoon of baking soda
+- 1/4 teaspoon of salt
 - 100 grams of chopped **dark** chocolate. The kind you'd want to eat, like 60%+ cocoa.
 
 ##### Optinal - 
@@ -42,7 +43,7 @@ You'll need to brown the butter - heat it in a silver pan (to clearly tell the c
 
 Break the eggs in, remove the shells that fell to the bowl, stir to combine.
 
-Pour in vanilla, flour and baking soda and stir after each until you have cement.
+Pour in vanilla, flour, baking soda and salt and stir after each until you have cement.
 
 Chop the chocolate (Carefully, these instructions are written in blood) with a sharp knife to chip-sized chips, and combine with the cookie goo.
 
